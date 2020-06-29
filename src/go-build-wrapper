@@ -33,9 +33,9 @@ if ! cd "$1"; then
     exit 1
 fi
 
-tags=""
+tags="-tags rpm_crashtraceback,${BUILDTAGS:-}"
 if $7; then
-    tags="-tags migration_path_for_coreos_toolbox"
+    tags="$tags,migration_path_for_coreos_toolbox"
 fi
 
 if ! libc_dir=$("$5" --print-file-name=libc.so); then
@@ -70,11 +70,16 @@ fi
 
 dynamic_linker="/run/host$dynamic_linker_canonical_dirname/$dynamic_linker_basename"
 
+unset LDFLAGS
+
 # shellcheck disable=SC2086
 go build \
+        -compiler gc \
         $tags \
-        -trimpath \
-        -ldflags "-extldflags '-Wl,-dynamic-linker,$dynamic_linker -Wl,-rpath,/run/host$libc_dir_canonical_dirname' -linkmode external -X github.com/containers/toolbox/pkg/version.currentVersion=$4" \
+        -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -compressdwarf=false -extldflags '-Wl,-z,relro -Wl,--as-needed -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -Wl,--build-id=sha1 -Wl,-dynamic-linker,$dynamic_linker -Wl,-rpath,/run/host$libc_dir_canonical_dirname' -linkmode external -X github.com/containers/toolbox/pkg/version.currentVersion=$4" \
+        -a \
+        -v \
+        -x \
         -o "$2/$3"
 
 exit "$?"
