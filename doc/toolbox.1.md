@@ -1,14 +1,14 @@
 % toolbox 1
 
 ## NAME
-toolbox - Tool for containerized command line environments on Linux
+toolbox \- Tool for containerized command line environments on Linux
 
 ## SYNOPSIS
-**toolbox** [*--assumeyes* | *-y*]
-        [*--help* | *-h*]
-        [*--log-level LEVEL*]
-        [*--log-podman*]
-        [*--verbose* | *-v*]
+**toolbox** [*\-\-assumeyes* | *\-y*]
+        [*\-\-help* | *\-h*]
+        [*\-\-log-level LEVEL*]
+        [*\-\-log-podman*]
+        [*\-\-verbose* | *\-v*]
         *COMMAND* [*ARGS*...]
 
 ## DESCRIPTION
@@ -38,7 +38,7 @@ The toolbox environment is based on an OCI image. On Fedora this is the
 seamlessly integrates with the rest of the operating system by providing
 access to the user's home directory, the Wayland and X11 sockets, networking
 (including Avahi), removable devices (like USB sticks), systemd journal, SSH
-agent, D-Bus, ulimits, /dev and the udev database, etc..
+agent, D\-Bus, ulimits, /dev and the udev database, etc..
 
 ## Supported operating system distributions
 
@@ -95,25 +95,25 @@ Enter with: toolbox enter
 
 The following options are understood:
 
-**--assumeyes, -y**
+**\-\-assumeyes, \-y**
 
 Automatically answer yes for all questions.
 
-**--help, -h**
+**\-\-help, \-h**
 
 Print a synopsis of this manual and exit.
 
-**--log-level**=*level*
+**\-\-log-level**=*level*
 
 Log messages above specified level: debug, info, warn, error, fatal or panic
 (default: error)
 
-**--log-podman**
+**\-\-log\-podman**
 
 Show log messages of invocations of Podman based on the logging level specified
-by option **log-level**.
+by option **log\-level**.
 
-**--verbose, -v**
+**\-\-verbose, \-v**
 
 Same as `--log-level=debug`. Use `-vv` to include `--log-podman`.
 
@@ -121,35 +121,35 @@ Same as `--log-level=debug`. Use `-vv` to include `--log-podman`.
 
 Commands for working with toolbox containers and images:
 
-**toolbox-create(1)**
+**toolbox\-create(1)**
 
 Create a new toolbox container.
 
-**toolbox-enter(1)**
+**toolbox\-enter(1)**
 
 Enter a toolbox container for interactive use.
 
-**toolbox-help(1)**
+**toolbox\-help(1)**
 
 Display help information about Toolbox.
 
-**toolbox-init-container(1)**
+**toolbox\-init\-container(1)**
 
 Initialize a running container.
 
-**toolbox-list(1)**
+**toolbox\-list(1)**
 
 List existing toolbox containers and images.
 
-**toolbox-rm(1)**
+**toolbox\-rm(1)**
 
 Remove one or more toolbox containers.
 
-**toolbox-rmi(1)**
+**toolbox\-rmi(1)**
 
 Remove one or more toolbox images.
 
-**toolbox-run(1)**
+**toolbox\-run(1)**
 
 Run a command in an existing toolbox container.
 
